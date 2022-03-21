@@ -1,0 +1,8 @@
+So i made this mod just for fun also 
+[  ] Spanish:
+Instalación: pegar la imagen dentro de carpeta del juego/asset/shared/images y reemplazar
+English : Installation: paste the image into game folder / asset / shared / images and paste
+For bf and gf 
+English: Copy the xml and png file in assest/shared/images for both cases
+Spanish :
+Cómo instalar: Copie el archivo xml y png en assest / shared / images para ambos casos

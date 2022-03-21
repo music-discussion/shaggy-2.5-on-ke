@@ -1,0 +1,12 @@
+menu
+n_con:I don't why but they call it a paradoxial
+n_normal:And I dropped it at some point
+n_happy:I wonder where (I totally know where)
+h_happy:The song they were singing sucked BALLS!
+h_happy:My paradoxial just exploded and landed #behind gee eff.
+n_trauma:explode:songScary
+n_sad:The song was like some battle between red and #green shag. they said something about #doing it on canon
+n_trauma:I don't know how you'll get there to get it #but good luck.
+n_trauma:I didn't know I needed it until I couldn't #transform to make conquering easier.
+h_normal:Oops, I'm on a roll huh?:songGood
+n_happy:Should be easy to get right?

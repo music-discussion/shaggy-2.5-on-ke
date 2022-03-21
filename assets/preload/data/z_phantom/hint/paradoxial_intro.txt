@@ -1,0 +1,5 @@
+continue:hint/paradoxial
+n_normal:I really don't know how you will get to this one.
+n_happy:But if you do, I will be glad!
+n_trauma:Looks like I'm not the only conqueror:songScary
+n_normal:Did I say that out loud? Ignore that:songGood
