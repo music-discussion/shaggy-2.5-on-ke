@@ -650,6 +650,39 @@ class CrystalOption extends Option
 	}
 }
 
+class ZephOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.zephM = !FlxG.save.data.zephM;
+		var doZeph = FlxG.save.data.zephM;
+		switch (FlxG.save.data.zephM)
+		{
+			case false: 
+				Main.menuStringTrack = 'freakyMenu';
+			case true: 
+				Main.menuStringTrack = 'MASK/phantomMenu';
+		}
+		display = updateDisplay();
+		return true;
+		trace(FlxG.sound.music);
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
+		FlxG.sound.playMusic(Paths.music(Main.menuStringTrack));
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Zeph Theme " + (!FlxG.save.data.zephM ? "Off" : "On");
+	}
+}
+
 class ReplayOption extends Option
 {
 	public function new(desc:String)

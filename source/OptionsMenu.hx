@@ -71,6 +71,12 @@ class OptionsMenu extends MusicBeatState
 			new Optimization("No backgrounds, no characters, centered notes, no player 2."),
 			new GraphicLoading("On startup, cache every character. Significantly decrease load times. (HIGH MEMORY)"),
 			new BotPlay("Showcase your charts and mods with autoplay."),
+			#if debug
+			new ZephOption("Switch the menu music to the classic Zeph Theme!"),
+			#else
+			if (FlxG.save.data.ending[2]) 
+				new ZephOption("Switch the menu music to the classic Zeph Theme!")
+			#end
 		]),
 		new OptionCategory("Experimental", [
 			new GTHModeOption("Change the input system to act similar to Guitar Hero(actual controller recommended)"),

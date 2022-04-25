@@ -1877,10 +1877,11 @@ class PlayState extends MusicBeatState
 				songPosBar.scrollFactor.set();
 				songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
 				add(songPosBar);
-	
-				var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5),songPosBG.y,0,SONG.song + ' | Time Left: ' + timeTxt, 16);
+
+				var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5),songPosBG.y,0,SONG.song + ' | Time Left: ' + timeTxt + ' or ' + Std.string(songLength - Conductor.songPosition), 16);
 				if (PlayStateChangeables.useDownscroll)
 					songName.y -= 3;
+				songName.x -= 10;
 				songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 				songName.scrollFactor.set();
 				add(songName);
@@ -3349,9 +3350,10 @@ class PlayState extends MusicBeatState
 		//	timeTxt.borderSize = 2;
 		//	timeTxt.visible = !ClientPrefs.hideTime;
 
-			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5),songPosBG.y,0,SONG.song + ' | Time Left: ' + timeTxt, 16);
+			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5),songPosBG.y,0,SONG.song + ' | Time Left: ' + timeTxt + ' or ' + Std.string(songLength - Conductor.songPosition), 16);
 			if (PlayStateChangeables.useDownscroll)
 				songName.y -= 3;
+			songName.x -= 10;
 			songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 			songName.scrollFactor.set();
 
@@ -4447,6 +4449,8 @@ class PlayState extends MusicBeatState
 				switch (zephState)
 				{
 					case 1:
+						camHUD.visible = false;
+						camNotes.visible = false;
 						var tow = new FlxPoint(dad.getMidpoint().x, dad.getMidpoint().y - 1200);
 						zephAddX -= 1.25;
 	
@@ -4590,6 +4594,9 @@ class PlayState extends MusicBeatState
 					zend_time ++;
 					switch (zend_time)
 					{
+						case 1:
+							camHUD.visible = false;
+							camNotes.visible = false;
 						case 200:
 							camFollow.x = boyfriend.getMidpoint().x - 100;
 							camFollow.y = boyfriend.getMidpoint().y - 300;
@@ -4620,6 +4627,8 @@ class PlayState extends MusicBeatState
 						
 						case 700:
 							FlxG.sound.playMusic(Paths.music('MASK/phantomMenu'));
+							Main.menuStringTrack = 'MASK/phantomMenu';
+							FlxG.save.data.zephM = true;
 	
 							MASKstate.endingUnlock(2);
 							var bef3 = new Alphabet(0, 600, 'secret ending', true, false);
@@ -4628,6 +4637,12 @@ class PlayState extends MusicBeatState
 	
 							add(bef3);
 						case 1000:
+							var bef4 = new Alphabet(0, 400, 'Hold SHIFT while entering Freeplay', true, false);
+							bef4.cameras = [camHUD];
+							bef4.screenCenter(X);
+	
+							add(bef4);
+						case 1200:
 							MusicBeatState.switchState(new CreditsState());
 					}
 	
@@ -9551,7 +9566,10 @@ class PlayState extends MusicBeatState
 		// Updating Discord Rich Presence (with Time Left)
 		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "Acc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC,true,  songLength - Conductor.songPosition);
 		#end
-
+		if (songName != null)
+			songName.text = SONG.song + ' | Time Left: ' + timeTxt + ' or ' + Std.string(songLength - Conductor.songPosition);
+		else 
+			trace('something is wrong');
 	}
 
 	var lightningStrikeBeat:Int = 0;

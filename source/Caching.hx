@@ -183,6 +183,16 @@ class Caching extends MusicBeatState
 		trace(Assets.cache.hasBitmapData('GF_assets'));
 
 		FlxG.switchState(new TitleState());
+		Main.mainInit();
+		switch (FlxG.save.data.zephM)
+		{
+			case false: 
+				Main.menuStringTrack = 'freakyMenu';
+			case true: 
+				Main.menuStringTrack = 'MASK/phantomMenu';
+			default:
+				FlxG.save.data.zephM = false;
+		}
 	}
 
 }

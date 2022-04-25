@@ -34,6 +34,7 @@ class Main extends Sprite
 	public static var dataJump:Array<Int> = [8, 12, 18];
 	public static var crystal = false;
 	public static var onlyExtra:Bool = true; //setting this to true makes the game force to only show extra stages.
+	public static var menuStringTrack:String = 'freakyMenu'; //changing this makes the game play a different soundtrack.
 	// Main.crystal
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
@@ -44,6 +45,13 @@ class Main extends Sprite
 		// quick checks 
 
 		Lib.current.addChild(new Main());
+	}
+
+	public static function mainInit():Void 
+	{
+		#if debug
+		onlyExtra = false;
+		#end
 	}
 
 	public function new()
